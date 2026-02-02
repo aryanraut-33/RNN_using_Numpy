@@ -107,22 +107,27 @@ Implements the Hyperbolic Tangent activation function.
 
 ---
 
-## Usage
+## Interactive Demo (Streamlit App)
+We have added a visual, interactive dashboard to help you understand the RNN lifecycle step-by-step.
 
-See `test.py` for a complete example.
+### Live Demo
+**[Click here to try the Interactive App](https://aryanraut-33-rnn-using-numpy-5packageapp-a3wfyz.streamlit.app/)**
 
-```python
-import numpy as np
-from rnn import Run_RNN, Tanh, Apply_RNN
 
-# 1. Generate Data
-X_t = np.arange(-10, 10, 0.1).reshape(-1, 1)
-Y_t = np.sin(X_t) # Example target
+### Step-by-Step Guide
+The app is divided into 3 tabs:
 
-# 2. Train Model
-# This will plot the training progress periodically
-rnn = Run_RNN(X_t, Y_t, Tanh(), epochs=500, n_neurons=50, plot_each=50)
+1.  **Training (Regression)**
+    *   What to do: keeping parameters default (`Neurons=50`, `Epochs=500`), click **Start Training**.
+    *   Observe: Watch the Red line (Model) learn to fit the Blue line (True Data).
+    *   Goal: See how the Loss decreases over time.
 
-# 3. Inference
-Y_hat = Apply_RNN(X_t, rnn)
-```
+2.  **Inference (Prediction)**
+    *   What to do: After training in Tab 1, switch to this tab.
+    *   Action: Click **Run Apply_RNN() Forward Pass**.
+    *   Result: See the model predict on *unseen* data (Green line) using the frozen weights.
+
+3.  **Autoregression (Time Forecasting)**
+    *   Theory: Predicting the next value based on past values (Time Lag `dt`).
+    *   Experiment: Try `dt=20` (Short memory) vs `dt=50` (Long memory).
+    *   Result: See how the model forecasts the future (Red line) beyond the training data.
